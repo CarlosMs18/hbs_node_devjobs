@@ -1,0 +1,31 @@
+<main class="contenedor">
+    <form action="/auth/signup" method="POST" class='default-form'>
+        <div class="campo">
+            <label>Nombre</label>
+            <input type="text" name="nombre" placeholder="Tu nombre" value="{{oldInput.name}}">
+        </div>
+
+        <div class="campo">
+            <label>E-mail</label>
+            <input type="text" name="email" placeholder="Tu email" value="{{oldInput.email}}">
+        </div>
+
+
+        <div class="campo">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Tu password" value="{{oldInput.password}}">
+        </div>
+        <div class="campo">
+            <label>Repetir Password</label>
+            <input type="password" name="confirmar" placeholder="Repetir password" value="{{oldInput.confirmar}}">
+        </div>
+
+        <div class="campo-acciones">
+            <a href="/auth/signin">Volver a inicio de sesion</a>
+        </div>
+        
+        <div class="campo">
+            <input type="submit" value="Crear cuenta" class="btn btn-azul">
+        </div>
+    </form>
+</main>
