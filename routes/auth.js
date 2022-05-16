@@ -1,4 +1,5 @@
 const authController = require('../controllers/auth')
+const isAuth = require('../middlewares/is-auth')
 const {check} = require('express-validator')
 const Router = require('express')
 const router = Router()
@@ -47,5 +48,21 @@ router.post('/reset-password/:token',[
 ],authController.newPassword)
 
 
-router.get('/edit-perfil',authController.editPerfil)
+router.get('/edit-perfil',isAuth,authController.editPerfil)
+
+router.post('/edit-perfil',
+    isAuth,
+  
+    authController.subirImagen,
+    [
+        check('email','Lo ingresado debe de ser un email valido!')
+        .isEmail(),
+        check('nombre','El nombre es obligatorio')
+        .not().isEmpty().trim(),
+        check('password','La contraseña debe de tener un minimo de 5 digitos')
+        .not().isEmpty().trim()
+        .isLength({min:5})
+        
+    ],
+    authController.postEditPerfil)
 module.exports = router
