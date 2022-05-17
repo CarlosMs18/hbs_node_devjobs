@@ -52,7 +52,7 @@ const vacantesSchema = Schema({
 vacantesSchema.pre('save',function(next){
     const url = slug(this.title)
     this.url = `${url}-${shortid.generate()}`
-
+    
     next()
 })
 module.exports = model('Vacantes',vacantesSchema)
