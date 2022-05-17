@@ -27,7 +27,7 @@ const store = new MongoStore({
 
 app.use(cors())
 
-app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.urlencoded({extended:true}))
 app.engine('handlebars',exphbs.engine({
     handlebars :allowInsecurePrototypeAccess(Handlebars),
     defaultLayout : 'main',

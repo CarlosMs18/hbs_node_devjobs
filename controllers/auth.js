@@ -6,6 +6,7 @@ const multer = require('multer')
 const shortid = require('shortid')
 const path  = require('path')
 const fs = require('fs')
+const enviarEmail  = require('../handlers/email')
 
 exports.subirImagen = (req, res, next) => {
     upload(req, res, function(error) {
@@ -150,7 +151,12 @@ exports.postForgotPassword = async(req, res, next) => {
 
         const resetUrl = `http://${req.headers.host}/auth/reset-password/${usuario.token}`
 
-        console.log(resetUrl)
+        await enviarEmail.enviar({
+            usuario,
+            subject : 'Password Reset',
+            resetUrl,
+            archivo: 'reset'
+        });
 
         req.flash('correcto','El email se ha enviando de manera correcta!')
         res.redirect('/auth/signin')
